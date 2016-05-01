@@ -13,8 +13,8 @@ SELECT brand_name, name FROM models  WHERE year = 1964
 
 -- 4. Select the model name, brand name, and headquarters for the Ford Mustang
 --    from the Models and Brands tables.
-SELECT m.brand_name, m.name, b.headquarters FROM models as m 
-JOIN brands as b ON m.brand_name = b.name WHERE m.name = 'Mustang'
+SELECT m.brand_name, m.name, b.headquarters FROM models AS m 
+JOIN brands AS b ON m.brand_name = b.name WHERE m.name = 'Mustang'
 
 -- 5. Select all rows for the three oldest brands
 --    from the Brands table (Hint: you can use LIMIT and ORDER BY).
@@ -35,7 +35,7 @@ SELECT * FROM models ORDER BY name OFFSET 14 LIMIT 10
 --    for model(s) even if its brand is not in the Brands table.
 --    (The year the brand was founded should be NULL if
 --    the brand is not in the Brands table.)
-SELECT m.brand_name as Brand, m.name as Model, b.founded as Founded FROM models as m LEFT JOIN brands as b ON m.brand_name = b.name WHERE m.year = '1960'
+SELECT m.brand_name AS Brand, m.name AS Model, b.founded AS Founded FROM models AS m LEFT JOIN brands AS b ON m.brand_name = b.name WHERE m.year = '1960'
 
 
 -- Part 2: Change the following queries according to the specifications.
@@ -52,6 +52,7 @@ SELECT m.brand_name as Brand, m.name as Model, b.founded as Founded FROM models 
     --   LEFT JOIN brands AS b
     --     ON b.name = m.brand_name
     -- WHERE b.discontinued IS NULL;
+SELECT b.name, b.founded, m.name FROM brands AS b LEFT JOIN models AS m on b.name = m.brand_name WHERE b.discontinued IS NULL
 
 -- 2. Modify this left join so it only selects models that have brands in the Brands table.
 -- before:
@@ -61,9 +62,12 @@ SELECT m.brand_name as Brand, m.name as Model, b.founded as Founded FROM models 
     -- FROM Models AS m
     --   LEFT JOIN Brands AS b
     --     ON b.name = m.brand_name;
+SELECT m.name, m.brand_name, b.founded FROM models AS m JOIN brands AS b ON b.name = m.brand_name
 
 -- followup question: In your own words, describe the difference between
 -- left joins and inner joins.
+-- CHRISTINA'S ANSWER: Inner joins select just the intersection of the two tables. Items from either table that do not intersect will NOT be included. Left joins select the intersection as well as any non-intersecting items from the table to the left (or before) the join.
+
 
 -- 3. Modify the query so that it only selects brands that don't have any models in the models table.
 -- (Hint: it should only show Tesla's row.)
