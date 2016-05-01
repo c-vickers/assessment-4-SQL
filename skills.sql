@@ -28,13 +28,14 @@ SELECT COUNT(*) FROM models WHERE brand_name = 'Ford'
 SELECT name FROM brands WHERE discontinued IS NULL
 
 -- 8. Select rows 15-25 of the DB in alphabetical order by model name.
+SELECT * FROM models ORDER BY name OFFSET 14 LIMIT 10
 
 -- 9. Select the brand, name, and year the model's brand was
 --    founded for all of the models from 1960. Include row(s)
 --    for model(s) even if its brand is not in the Brands table.
 --    (The year the brand was founded should be NULL if
 --    the brand is not in the Brands table.)
-
+SELECT m.brand_name as Brand, m.name as Model, b.founded as Founded FROM models as m LEFT JOIN brands as b ON m.brand_name = b.name WHERE m.year = '1960'
 
 
 -- Part 2: Change the following queries according to the specifications.
