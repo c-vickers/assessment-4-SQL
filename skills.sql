@@ -109,11 +109,19 @@ SELECT b.name, m.name, m.year, b.discontinued, m.year-b.discontinued AS years_un
 -- ----    ----       ----------
 -- 2015    Chevrolet  Malibu
 -- 2015    Subaru     Outback
+INSERT INTO models (year, name, brand_name) VALUES (2015, 'Malibu', 'Chevrolet')
+INSERT INTO models (year, name, brand_name) VALUES (2015, 'Outback', 'Subaru')
+
 
 -- 3. Write a SQL statement to crate a table called `Awards`
 --    with columns `name`, `year`, and `winner`. Choose
 --    an appropriate datatype and nullability for each column
 --   (no need to do subqueries here).
+
+CREATE TABLE awards( name VARCHAR(50) NOT NULL, year INTEGER NOT NULL winner_id INTEGER REFERENCES models)
+
+
+
 
 -- 4. Write a SQL statement that adds the following rows to the Awards table:
 
