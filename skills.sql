@@ -132,9 +132,15 @@ CREATE TABLE awards( name VARCHAR(50) NOT NULL, year INTEGER NOT NULL winner_id 
 --   ----                 ----      ---------------
 --   IIHS Safety Award    2015      the id for the 2015 Chevrolet Malibu
 --   IIHS Safety Award    2015      the id for the 2015 Subaru Outback
+--I didn't know how to do this without sub-queries.
+INSERT INTO awards VALUES ('IIHS Safety Award', 2015, (SELECT id FROM models WHERE name = 'Malibu'))
+
+INSERT INTO awards VALUES ('IIHS Safety Award', 2015, (SELECT id FROM models WHERE name = 'Outback'))
 
 -- 5. Using a subquery, select only the *name* of any model whose
 -- year is the same year that *any* brand was founded.
+
+SELECT name FROM models WHERE year = ANY(SELECT founded FROM brands)
 
 
 
