@@ -78,6 +78,7 @@ SELECT m.name, m.brand_name, b.founded FROM models AS m JOIN brands AS b ON b.na
     --   LEFT JOIN Models
     --     ON brands.name = Models.brand_name
     -- WHERE Models.year > 1940;
+SELECT b.name, b.founded FROM brands AS b LEFT JOIN models AS m on b.name = m.brand_name WHERE m.brand_name IS NULL
 
 -- 4. Modify the query to add another column to the results to show
 -- the number of years from the year of the model until the brand becomes discontinued
@@ -91,7 +92,7 @@ SELECT m.name, m.brand_name, b.founded FROM models AS m JOIN brands AS b ON b.na
     --   LEFT JOIN brands AS b
     --     ON m.brand_name = b.name
     -- WHERE b.discontinued NOT NULL;
-
+SELECT b.name, m.name, m.year, b.discontinued, m.year-b.discontinued AS years_until_brand_discontinued FROM models AS m LEFT JOIN brands AS b ON m.brand_name = b.name WHERE b.discontinued IS NOT NULL
 
 
 
